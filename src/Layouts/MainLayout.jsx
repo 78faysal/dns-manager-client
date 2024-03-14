@@ -12,7 +12,7 @@ const MainLayout = () => {
     <div>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content p-4">
+        <div className="drawer-content bg-base-100 p-4">
             <Outlet />
           {/* Page content here */}
           <label
@@ -28,7 +28,7 @@ const MainLayout = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+          <ul className="menu p-4 w-80 min-h-full bg-base-300 text-base-content">
             {/* Sidebar content here */}
             <Link to={'/'} className="text-2xl  text-center p-3">DNS Manager</Link>
             <li>

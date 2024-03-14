@@ -5,6 +5,7 @@ import DnsRecords from "../Pages/DnsRecors/DnsRecords";
 import Domains from "../Pages/Domains/Domains";
 import ManageDNS from "../Pages/ManageDNS/ManageDNS";
 import AddRecord from "../Pages/ManageDNS/AddRecord";
+import AddDomain from "../Pages/Domains/AddDomain";
 
 const Routes = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const Routes = createBrowserRouter([
         {
           path: '/manageDns',
           element: <ManageDNS />
+        },
+        {
+          path: '/domains/addDomain',
+          element: <AddDomain />
         },
         {
           path: '/manageDns/addRecord',

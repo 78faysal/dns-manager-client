@@ -39,16 +39,16 @@ const Analytics = () => {
               <BsPeople className="text-3xl" />
             </div>
             <div className="stat-title">New Users</div>
-            <div className="stat-value">07</div>
+            <div className="stat-value">02</div>
             <div className="stat-desc">↗︎ 400 (22%)</div>
           </div>
 
           <div className="stat">
             <div className="stat-figure text-secondary">
-              <LuNetwork />
+              <LuNetwork className="text-3xl" />
             </div>
             <div className="stat-title">DNS Records</div>
-            <div className="stat-value">02</div>
+            <div className="stat-value">07</div>
             <div className="stat-desc">↘︎ 90 (14%)</div>
           </div>
         </div>

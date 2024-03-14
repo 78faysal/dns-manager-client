@@ -6,7 +6,7 @@ const ManageDNS = () => {
       <div className="overflow-x-auto">
         <div className="flex justify-between items-center md:px-10 md:py-4">
           <div className=" border relative">
-            <input className="input join-item rounded-l-md" placeholder="🔍 Search domains..." />
+            <input className="input join-item rounded-l-md" placeholder="🔍 Search domain..." />
             {/* <button className="btn join-item border-0 bg-transparent absolute right-0">
               <BsSearch />
             </button> */}
