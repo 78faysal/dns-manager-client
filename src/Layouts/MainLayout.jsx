@@ -32,16 +32,16 @@ const MainLayout = () => {
             {/* Sidebar content here */}
             <Link to={'/'} className="text-2xl  text-center p-3">DNS Manager</Link>
             <li>
-              <Link to={'/'}><PiShareNetworkLight className="text-xl"/> Domains</Link>
+              <Link to={'/'}><IoAnalyticsOutline className="text-xl"/>Analytics</Link>
+            </li>
+            <li>
+              <Link to={'/domains'}><PiShareNetworkLight className="text-xl"/> Domains</Link>
             </li>
             <li>
               <Link to={'/records'}><IoIosGitNetwork className="text-xl"/> DNS Records</Link>
             </li>
             <li>
-              <Link to={'/'}><FaConnectdevelop className="text-xl"/> DNS Management</Link>
-            </li>
-            <li>
-              <Link to={'/analytics'}><IoAnalyticsOutline className="text-xl"/>Analytics</Link>
+              <Link to={'/manageDns'}><FaConnectdevelop className="text-xl"/> DNS Management</Link>
             </li>
           </ul>
         </div>

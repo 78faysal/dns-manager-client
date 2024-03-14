@@ -1,14 +1,23 @@
-const DnsRecords = () => {
+import { BsSearch } from "react-icons/bs";
+
+
+const Domains = () => {
   return (
     <div>
+      
       <div className="overflow-x-auto">
-        <div className="text-lg w-24 text-center py-1 rounded-md">
-          <select name="" className="px-2">
-            <option value="" aria-readonly>Filter</option>
-            <option value="">value</option>
-            <option value="">value</option>
-            <option value="">value</option>
-          </select>
+        <div className="flex justify-between items-center md:px-10 md:py-5 w-full">
+          <div className="join border relative">
+            <input
+              className="input  join-item "
+              placeholder="Search domains"
+            />
+            <button className="btn join-item bg-transparent absolute right-0"><BsSearch /></button>
+          </div>
+
+          <div>
+            <button className="btn btn-beutral">Add Domain</button>
+          </div>
         </div>
         <table className="table">
           {/* head */}
@@ -38,4 +47,4 @@ const DnsRecords = () => {
   );
 };
 
-export default DnsRecords;
+export default Domains;
