@@ -6,6 +6,7 @@ import Domains from "../Pages/Domains/Domains";
 import ManageDNS from "../Pages/ManageDNS/ManageDNS";
 import AddRecord from "../Pages/ManageDNS/AddRecord";
 import AddDomain from "../Pages/Domains/AddDomain";
+import UpdateRecord from "../Pages/ManageDNS/UpdateRecord";
 
 const Routes = createBrowserRouter([
   {
@@ -35,6 +36,11 @@ const Routes = createBrowserRouter([
         {
           path: '/manageDns/addRecord',
           element: <AddRecord />
+        },
+        {
+          path: '/manageDns/updateRecord/:id',
+          loader: ({params}) => fetch(`http://localhost:5000/single-record/${params.id}`),
+          element: <UpdateRecord />
         }
     ]
   },
