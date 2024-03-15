@@ -29,7 +29,7 @@ const AddRecord = () => {
       ttl: ttl,
       description: description,
     };
-    console.log(record);
+    // console.log(record);
 
     axiosSecure.post("/records", record).then((data) => {
       if (data.data.insertedId) {

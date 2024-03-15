@@ -1,17 +1,41 @@
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 const ManageDNS = () => {
   const axiosSecure = useAxiosSecure();
+  const [searchDomain, setSearchDomain] = useState("");
 
-  const { data: records, isPending } = useQuery({
-    queryKey: ["records"],
+  const {
+    data: records,
+    isPending,
+    refetch,
+  } = useQuery({
+    queryKey: ["records", searchDomain],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/records?domain=${"all"}`);
+      const { data } = await axiosSecure.get(`/records?domain=${"all"}&&searchDomain=${searchDomain}`);
       return data;
     },
   });
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+
+    setSearchDomain(e.target.searchValue.value);
+  };
+
+  // console.log(searchDomain);
+
+  const handleRecordDelete = (id) => {
+    axiosSecure.delete(`/single-record/${id}`).then((data) => {
+      if (data?.data?.deletedCount) {
+        toast.success("Record Deleted");
+        refetch();
+      }
+    });
+  };
 
   //   console.log(records);
   return (
@@ -23,15 +47,17 @@ const ManageDNS = () => {
       )}
       <div className="overflow-x-auto">
         <div className="flex justify-between items-center md:px-10 md:py-4">
-          <div className=" border relative">
-            <input
-              className="input join-item rounded-l-md"
-              placeholder="🔍 Search domain..."
-            />
-            {/* <button className="btn join-item border-0 bg-transparent absolute right-0">
-              <BsSearch />
-            </button> */}
-          </div>
+        <form
+              className="join border relative"
+              onSubmit={handleSearchSubmit}
+            >
+              <input
+                // onChange={(e) => setSearchDomain(e.target.value)}
+                className="input join-item rounded-l-md"
+                placeholder="🔍 Search domains..."
+                name="searchValue"
+              />
+            </form>
 
           <Link to={"/manageDns/addRecord"}>
             <button className="btn">Add Record</button>
@@ -58,13 +84,23 @@ const ManageDNS = () => {
                 <td>{record?.record_value}</td>
                 <td>{record?.ttl}</td>
                 <td>
-                  <Link to={`/manageDns/updateRecord/${record?._id}`}><button className="btn btn-sm mr-3">Edit</button></Link>
-                  <button className="btn btn-sm">Delete</button>
+                  <Link to={`/manageDns/updateRecord/${record?._id}`}>
+                    <button className="btn btn-sm mr-3">Edit</button>
+                  </Link>
+                  <button
+                    className="btn btn-sm"
+                    onClick={() => handleRecordDelete(record?._id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        {records?.length < 1 && (
+            <h1 className="text-2xl pt-4  text-center">Domain Not Found..</h1>
+          )}
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ const UpdateRecord = () => {
       ttl: ttl,
       description: description,
     };
-    console.log(record);
+    // console.log(record);
 
     axiosSecure.put(`/single-record/${_id}`, record).then((data) => {
       if (data.data.modifiedCount > 0) {

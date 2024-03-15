@@ -30,7 +30,7 @@ const DnsRecords = () => {
               className="px-2"
               onChange={(e) => setFilterValue(e.target.value)}
             >
-              <option value="all" aria-readonly>
+              <option value="all">
                 Filter
               </option>
               <option value=".com">.com</option>

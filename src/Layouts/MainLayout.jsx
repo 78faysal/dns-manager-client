@@ -49,7 +49,7 @@ const MainLayout = () => {
             </li>
             <li>
               <Link to={"/manageDns"}>
-                <FaConnectdevelop className="text-xl" /> DNS Management
+                <FaConnectdevelop className="text-xl" /> Records Management
               </Link>
             </li>
           </ul>
