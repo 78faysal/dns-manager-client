@@ -4,8 +4,11 @@ import { IoIosGitNetwork } from "react-icons/io";
 import { FaConnectdevelop } from "react-icons/fa";
 import { IoAnalyticsOutline } from "react-icons/io5";
 import { HiMenuAlt1 } from "react-icons/hi";
+import useAuth from "../Hooks/useAuth";
+import { LuLogOut } from "react-icons/lu";
 
 const MainLayout = () => {
+  const { logOut } = useAuth();
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -26,32 +29,45 @@ const MainLayout = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-300 text-base-content">
+          <ul className="menu p-4 w-80 h-full bg-base-300 text-base-content">
             {/* Sidebar content here */}
-            <Link to={"/"} className="text-2xl  text-center p-3">
+
+            <Link to={"/"} className="text-2xl text-center p-3">
               DNS Manager
             </Link>
-            <li>
-              <Link to={"/"}>
-                <IoAnalyticsOutline className="text-xl" />
-                Analytics
-              </Link>
-            </li>
-            <li>
-              <Link to={"/domains"}>
-                <PiShareNetworkLight className="text-xl" /> Domains
-              </Link>
-            </li>
-            <li>
-              <Link to={"/records"}>
-                <IoIosGitNetwork className="text-xl" /> DNS Records
-              </Link>
-            </li>
-            <li>
-              <Link to={"/manageDns"}>
-                <FaConnectdevelop className="text-xl" /> Records Management
-              </Link>
-            </li>
+            <div className="flex flex-col justify-around">
+              <div>
+                <li>
+                  <Link to={"/"}>
+                    <IoAnalyticsOutline className="text-xl" />
+                    Analytics
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/domains"}>
+                    <PiShareNetworkLight className="text-xl" /> Domains
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/records"}>
+                    <IoIosGitNetwork className="text-xl" /> DNS Records
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/manageDns"}>
+                    <FaConnectdevelop className="text-xl" /> Records Management
+                  </Link>
+                </li>
+              </div>
+              <div className="divider my-2"></div>
+              <div>
+                <li>
+                  <p onClick={() => logOut()}>
+                    <LuLogOut className="text-xl" /> Log Out
+                  </p>
+                </li>
+              </div>
+            </div>
           </ul>
         </div>
       </div>

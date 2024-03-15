@@ -7,11 +7,14 @@ import ManageDNS from "../Pages/ManageDNS/ManageDNS";
 import AddRecord from "../Pages/ManageDNS/AddRecord";
 import AddDomain from "../Pages/Domains/AddDomain";
 import UpdateRecord from "../Pages/ManageDNS/UpdateRecord";
+import SignIn from "../Pages/Authentication/SignIn";
+import SignUp from "../Pages/Authentication/SignUp";
+import PrivateRoute from "./PrivateRoute";
 
 const Routes = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <PrivateRoute><MainLayout /></PrivateRoute>,
     children: [
         {
             path: '/',
@@ -42,8 +45,16 @@ const Routes = createBrowserRouter([
           loader: ({params}) => fetch(`http://localhost:5000/single-record/${params.id}`),
           element: <UpdateRecord />
         }
-    ]
+    ],
   },
+  {
+    path: '/signIn',
+    element: <SignIn />
+  },
+  {
+    path: '/signUp',
+    element: <SignUp />
+  }
 ]);
 
 export default Routes;

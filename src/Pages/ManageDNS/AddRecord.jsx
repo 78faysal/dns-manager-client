@@ -18,8 +18,17 @@ const AddRecord = () => {
       return domainRegex.test(domain);
     };
 
+    const validateIpAddress = (recordValue) => {
+      const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
+      return ipRegex.test(recordValue);
+    };
+
     if (!isValidDomain(domainName)) {
       return toast.error("Invalid Domain");
+    }
+
+    if(!validateIpAddress(recordValue)){
+      return toast.error('Invalid IP')
     }
 
     const record = {
