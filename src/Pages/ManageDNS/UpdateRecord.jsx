@@ -15,7 +15,6 @@ const UpdateRecord = () => {
   });
   const { _id, domain_name, record_type, record_value, ttl, description } =
     recordData;
-  // console.log(id);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -101,7 +100,7 @@ const UpdateRecord = () => {
                       className="input input-bordered"
                       name="recordType"
                       required
-                    />
+                    />  
                   </div>
                   <div className="form-control">
                     <label className="label">

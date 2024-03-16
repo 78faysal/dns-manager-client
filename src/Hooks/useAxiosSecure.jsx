@@ -29,7 +29,6 @@ const useAxiosSecure = () => {
     function (error) {
       if (user) {
         const status = error.response?.status;
-        console.log(status);
         if (status === 401 || status === 403) {
           navigate(-1);
           return toast.error("You can't do this action!");
