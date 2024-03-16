@@ -3,10 +3,12 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import useAuth from "../../Hooks/useAuth";
 
 const ManageDNS = () => {
   const axiosSecure = useAxiosSecure();
   const [searchDomain, setSearchDomain] = useState("");
+  const { user } = useAuth();
 
   const {
     data: records,
@@ -15,7 +17,9 @@ const ManageDNS = () => {
   } = useQuery({
     queryKey: ["records", searchDomain],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/records?domain=${"all"}&&searchDomain=${searchDomain}`);
+      const { data } = await axiosSecure.get(
+        `/records?domain=${"all"}&&searchDomain=${searchDomain}`
+      );
       return data;
     },
   });
@@ -47,17 +51,14 @@ const ManageDNS = () => {
       )}
       <div className="overflow-x-auto">
         <div className="flex justify-between items-center md:px-10 md:py-4">
-        <form
-              className="join border relative"
-              onSubmit={handleSearchSubmit}
-            >
-              <input
-                // onChange={(e) => setSearchDomain(e.target.value)}
-                className="input join-item rounded-l-md"
-                placeholder="🔍 Search domains..."
-                name="searchValue"
-              />
-            </form>
+          <form className="join border relative" onSubmit={handleSearchSubmit}>
+            <input
+              // onChange={(e) => setSearchDomain(e.target.value)}
+              className="input join-item rounded-l-md"
+              placeholder="🔍 Search domains..."
+              name="searchValue"
+            />
+          </form>
 
           <Link to={"/manageDns/addRecord"}>
             <button className="btn">Add Record</button>
@@ -79,28 +80,37 @@ const ManageDNS = () => {
             {records?.map((record, idx) => (
               <tr key={record?._id}>
                 <th>{idx + 1}</th>
-                <td>{record?.domain_name}</td>
+                <td>
+                  {record?.domain_name}{" "}
+                  {record?.email === user?.email ? (
+                    <span className="badge badge-sm bg-blue-200">Mine</span>
+                  ) : (
+                    ""
+                  )}
+                </td>
                 <td>{record?.record_type}</td>
                 <td>{record?.record_value}</td>
                 <td>{record?.ttl}</td>
-                <td>
-                  <Link to={`/manageDns/updateRecord/${record?._id}`}>
-                    <button className="btn btn-sm mr-3">Edit</button>
-                  </Link>
-                  <button
-                    className="btn btn-sm"
-                    onClick={() => handleRecordDelete(record?._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
+                {record?.email === user?.email && (
+                  <td>
+                    <Link to={`/manageDns/updateRecord/${record?._id}`}>
+                      <button className="btn btn-sm mr-3">Edit</button>
+                    </Link>
+                    <button
+                      className="btn btn-sm"
+                      onClick={() => handleRecordDelete(record?._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
         </table>
         {records?.length < 1 && (
-            <h1 className="text-2xl pt-4  text-center">Domain Not Found..</h1>
-          )}
+          <h1 className="text-2xl pt-4  text-center">Domain Not Found..</h1>
+        )}
       </div>
     </div>
   );

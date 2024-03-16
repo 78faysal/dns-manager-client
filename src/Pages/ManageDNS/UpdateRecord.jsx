@@ -1,12 +1,21 @@
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useLoaderData } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const UpdateRecord = () => {
   const axiosSecure = useAxiosSecure();
+  const { id } = useParams();
+  const { data: recordData = [] } = useQuery({
+    queryKey: ["record"],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/single-record/${id}`);
+      return data;
+    },
+  });
   const { _id, domain_name, record_type, record_value, ttl, description } =
-    useLoaderData();
-  // console.log(data);
+    recordData;
+  // console.log(id);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();

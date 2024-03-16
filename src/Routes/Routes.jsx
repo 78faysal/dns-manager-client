@@ -11,6 +11,7 @@ import SignIn from "../Pages/Authentication/SignIn";
 import SignUp from "../Pages/Authentication/SignUp";
 import PrivateRoute from "./PrivateRoute";
 
+
 const Routes = createBrowserRouter([
   {
     path: "/",
@@ -42,7 +43,7 @@ const Routes = createBrowserRouter([
         },
         {
           path: '/manageDns/updateRecord/:id',
-          loader: ({params}) => fetch(`http://localhost:5000/single-record/${params.id}`),
+          // loader: ({params}) => fetch(`https://dns-manager-server.vercel.app/single-record/${params.id}`),
           element: <UpdateRecord />
         }
     ],

@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCHOycBShHmUnaqfyudkBRfACO5OKfRxj8",
-  authDomain: "dns-manager-f39da.firebaseapp.com",
-  projectId: "dns-manager-f39da",
-  storageBucket: "dns-manager-f39da.appspot.com",
-  messagingSenderId: "299880207113",
-  appId: "1:299880207113:web:ce56de5f154e16cf6079d8",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

@@ -1,8 +1,11 @@
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
 
 const AddRecord = () => {
   const axiosSecure = useAxiosSecure();
+  const {user} = useAuth();
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -37,6 +40,7 @@ const AddRecord = () => {
       record_value: recordValue,
       ttl: ttl,
       description: description,
+      email: user?.email,
     };
     // console.log(record);
 
