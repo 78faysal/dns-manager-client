@@ -78,19 +78,21 @@ const Analytics = () => {
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex justify-center max-sm:flex-col">
             <Chart
               chartType="PieChart"
               data={data}
+              className="w-full md:w-[500px] md:h-[400px]"
               //   options={options}
-              width={"500px"}
-              height={"400px"}
+              // width={"500px"}
+              // height={"400px"}
             />
 
             <Chart
               chartType="ColumnChart"
-              width="400"
-              height="400px"
+              className="w-full md:w-[400px] md:h-[400px]"
+              // width="300px"
+              // height="400px"
               data={columnData}
             />
           </div>
